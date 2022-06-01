@@ -53,7 +53,7 @@
     "eject": "react-scripts eject",
     "prettier": "prettier 'src/**/*.ts*'",
     "prettier:fix": "prettier --write 'src/**/*.ts*'",
-    "eslint": "eslint src/**/*.{ts,tsx}",
+    "eslint": "eslint src/**/*.{ts,tsx} --fix",
     "pre-commit": "eslint src/**/*.{ts,tsx} --fix",
     "prepare": "husky install"
   },
