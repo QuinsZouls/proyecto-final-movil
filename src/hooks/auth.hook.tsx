@@ -20,6 +20,7 @@ export interface User {
 export interface AuthProviderProps {
   children?: any;
 }
+
 interface AuthContextType {
   // Especificamos la interface del context
   user?: User;

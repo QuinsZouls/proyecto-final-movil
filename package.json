@@ -53,8 +53,8 @@
     "eject": "react-scripts eject",
     "prettier": "prettier 'src/**/*.ts*'",
     "prettier:fix": "prettier --write 'src/**/*.ts*'",
-    "eslint": "eslint src/**/*.tsx",
-    "pre-commit": "eslint src/**/*.ts*",
+    "eslint": "eslint src/**/*.{ts,tsx}",
+    "pre-commit": "eslint src/**/*.{ts,tsx} --fix",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -84,6 +84,7 @@
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.0",
     "husky": "^8.0.1",
