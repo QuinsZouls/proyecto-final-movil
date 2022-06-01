@@ -3,13 +3,16 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@capacitor-community/storage-react": "^0.1.0",
     "@capacitor/app": "1.1.1",
     "@capacitor/core": "3.5.1",
     "@capacitor/haptics": "1.1.4",
     "@capacitor/keyboard": "1.2.2",
     "@capacitor/status-bar": "1.0.8",
+    "@capacitor/storage": "^1.2.5",
     "@ionic/react": "^6.0.0",
     "@ionic/react-router": "^6.0.0",
+    "@ionic/storage": "^3.0.6",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.3",
@@ -19,6 +22,7 @@
     "@types/react-dom": "^16.9.10",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
+    "apisauce": "^2.1.5",
     "dayjs": "^1.11.2",
     "ionicons": "^5.4.0",
     "react": "^17.0.1",
@@ -46,7 +50,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier 'src/**/*.ts*'",
+    "prettier:fix": "prettier --write 'src/**/*.ts*'",
+    "eslint": "eslint src/**/*.tsx",
+    "pre-commit": "eslint src/**/*.ts*",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -67,7 +76,18 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "3.5.1"
+    "@capacitor/cli": "3.5.1",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
+    "eslint": "^8.16.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "husky": "^8.0.1",
+    "prettier": "2.6.2"
   },
   "description": "An Ionic project"
 }

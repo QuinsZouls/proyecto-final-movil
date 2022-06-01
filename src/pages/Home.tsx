@@ -1,22 +1,13 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Home.css';
-
+import React from 'react';
+import { IonPage, IonContent, IonButton } from '@ionic/react';
+import useAuth from '../hooks/auth.hook';
 const Home: React.FC = () => {
+  const { logout } = useAuth();
+  // TODO Agregar barra de navegación
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Blank</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+    <IonPage className="home-screen">
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer />
+        <IonButton onClick={logout}>Home Page</IonButton>
       </IonContent>
     </IonPage>
   );
