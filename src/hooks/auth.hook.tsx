@@ -80,7 +80,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     await storage.clear();
     setUser(null);
     history.push('/login');
-    console.log('Logout');
   }
   const memoedValue = useMemo(
     () => ({
