@@ -7,7 +7,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import Home from '../pages/Home';
 
 export const history = createBrowserHistory();
-
+// Aquí agregar la pantallas con su respectivo path
 const Router: React.FC = () => {
   return (
     <IonReactRouter history={history}>
