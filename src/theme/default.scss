@@ -1,3 +1,12 @@
+$primary-color: #808aff;
+
+$gradient-n1: linear-gradient(
+  112deg,
+  rgba(128, 156, 255, 1) 0%,
+  rgba(131, 220, 240, 1) 78%,
+  rgba(251, 237, 255, 1) 100%
+);
+
 /* Ionic Variables and Theming. For more info, please see:
 http://ionicframework.com/docs/theming/ */
 
@@ -76,6 +85,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-tint: #f5f6f9;
 }
 
+//para el tema oscuro
 @media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
