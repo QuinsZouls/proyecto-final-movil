@@ -19,7 +19,7 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
 /* Theme variables */
-import './styles/index.scss';
+import '../styles/index.scss';
 setupIonicReact();
 
 const App: React.FC = () => (
