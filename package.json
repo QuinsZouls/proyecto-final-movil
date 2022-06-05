@@ -24,6 +24,7 @@
     "@types/react-router-dom": "^5.1.7",
     "apisauce": "^2.1.5",
     "dayjs": "^1.11.2",
+    "firebase": "^9.8.2",
     "ionicons": "^5.4.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
