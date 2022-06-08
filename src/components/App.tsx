@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonApp, setupIonicReact } from '@ionic/react';
 import Router from './Router';
-import { AuthProvider } from '../hooks/auth.hook';
+import { FirebaseProvider } from '../hooks/firebase.hook';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -24,9 +24,9 @@ setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <AuthProvider>
+    <FirebaseProvider>
       <Router />
-    </AuthProvider>
+    </FirebaseProvider>
   </IonApp>
 );
 
