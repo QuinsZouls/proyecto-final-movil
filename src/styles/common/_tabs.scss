@@ -1,0 +1,12 @@
+ion-tabs {
+  .tab-selected {
+    ion-icon {
+      border-radius: 30px;
+      min-width: 50px;
+      background-color: $primary-color;
+      color: #fff;
+      padding: 10px;
+    }
+  }
+
+}

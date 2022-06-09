@@ -1,0 +1,15 @@
+.header {
+  width: 100%;
+  height: 70px;
+  padding: 10px;
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    .left-side {
+      ion-icon {
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+}

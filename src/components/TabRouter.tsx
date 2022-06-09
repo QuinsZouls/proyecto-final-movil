@@ -1,41 +1,32 @@
 import React from 'react';
-import {
-  IonTabs,
-  IonTabBar,
-  IonTabButton,
-  IonIcon,
-  IonPage,
-  IonContent,
-  IonRouterOutlet
-} from '@ionic/react';
+import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonRouterOutlet } from '@ionic/react';
 import { play, home, gameController } from 'ionicons/icons';
-import { Route, useRouteMatch } from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
+// Páginas de los tabs
+import Home from '../pages/Home';
 
-export const TabRouter: React.FC = () => {
-  const { url } = useRouteMatch();
+const TabRouter: React.FC = () => {
+  const { pathname } = useLocation();
+
   return (
-    <IonPage>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route path={`${url}`}>
-            <IonContent>
-              <div>Hola Home</div>
-            </IonContent>
-          </Route>
-        </IonRouterOutlet>
-        {/* -- Tab bar -- */}
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" selected>
-            <IonIcon icon={home} />
-          </IonTabButton>
-          <IonTabButton tab="contact">
-            <IonIcon icon={gameController} />
-          </IonTabButton>
-          <IonTabButton tab="play">
-            <IonIcon icon={play} />
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonPage>
+    <IonTabs>
+      <IonRouterOutlet>
+        <Route path="/" component={Home} exact={true} />
+      </IonRouterOutlet>
+      {/* -- Tab bar -- */}
+      <IonTabBar slot="bottom">
+        <IonTabButton tab="home" href="/" selected={pathname === '/'}>
+          <IonIcon icon={home} />
+        </IonTabButton>
+        <IonTabButton tab="tests" href="/tests" selected={pathname === '/tests'}>
+          <IonIcon icon={gameController} />
+        </IonTabButton>
+        <IonTabButton tab="play" href="/media" selected={pathname === '/media'}>
+          <IonIcon icon={play} />
+        </IonTabButton>
+      </IonTabBar>
+    </IonTabs>
   );
 };
+
+export default TabRouter;
