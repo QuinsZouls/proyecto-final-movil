@@ -24,6 +24,7 @@
     "semi": "off",
     "space-before-function-paren": "off",
     "no-console": "error",
-    "no-debugger": "error"
+    "no-debugger": "error",
+    "multiline-ternary": "off"
   }
 }

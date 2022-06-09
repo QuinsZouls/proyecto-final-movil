@@ -1,13 +1,10 @@
 import React from 'react';
-import { IonPage, IonContent } from '@ionic/react';
+import Layout from '../components/Layout';
 const Home: React.FC = () => {
-  // TODO Agregar barra de navegación
   return (
-    <IonPage className="home-screen">
-      <IonContent fullscreen>
-        <div>Home screen</div>
-      </IonContent>
-    </IonPage>
+    <Layout noHeader>
+      <div>Home courses</div>
+    </Layout>
   );
 };
 
