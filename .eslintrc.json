@@ -23,7 +23,7 @@
   "rules": {
     "semi": "off",
     "space-before-function-paren": "off",
-    "no-console": "error",
+    "no-console": "warn",
     "no-debugger": "error",
     "multiline-ternary": "off"
   }
