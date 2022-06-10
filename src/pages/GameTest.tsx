@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
-import { IonIcon } from '@ionic/react';
-import { callOutline } from 'ionicons/icons';
 
 import Layout from '../components/Layout';
 import HorizontalList from '../components/HorizontalList';
 import InfoCard from '../components/InfoCard';
-import monster from '../assets/img/monster/1.png';
+import monster from '../assets/img/monster/2.png';
 // Hooks
 import useFirebase from '../hooks/firebase.hook';
 import { useHistory } from 'react-router';
 
-const Home: React.FC = () => {
+const GameTests: React.FC = () => {
   const { courses, fetchCourses } = useFirebase();
   const history = useHistory();
   useEffect(() => {
@@ -21,34 +19,27 @@ const Home: React.FC = () => {
       headerConfig={{
         hideLeftSide: true,
         position: 'absolute',
-        RightComponent: (
-          <div
-            className="right-icon"
-            onClick={() => history.push('/courses/contact')}
-          >
-            <IonIcon icon={callOutline} />
-          </div>
-        )
+        hideRightSide: true
       }}
-      className="home-screen"
+      className="tests-screen"
     >
       <div className="top-content">
         <div className="title">
-          <h1>¡Hola!</h1>
-          <h5>Empecemos a aprender</h5>
+          <h1>Ponte</h1>
+          <h5>a prueba</h5>
         </div>
         <div className="image-wrapper">
           <img src={monster} />
         </div>
       </div>
       <div className="main-content">
-        <h1>Cursos</h1>
+        <h1>Tests</h1>
         <HorizontalList>
           {courses?.map(course => (
             <InfoCard
               image={course.image}
               key={course.id}
-              onClick={() => history.push(`/course/${course.id}`)}
+              onClick={() => history.push(`/game/${course.id}`)}
             >
               <h2>{course.name}</h2>
               <div>
@@ -62,4 +53,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default GameTests;
