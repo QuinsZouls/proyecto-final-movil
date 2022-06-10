@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@capacitor-community/storage-react": "^0.1.0",
+    "@capacitor/android": "3.5.1",
     "@capacitor/app": "1.1.1",
     "@capacitor/core": "3.5.1",
     "@capacitor/haptics": "1.1.4",
@@ -58,7 +59,9 @@
     "prettier:fix": "prettier --write 'src/**/*.ts*'",
     "eslint": "eslint src/**/*.{ts,tsx} --fix",
     "pre-commit": "eslint src/**/*.{ts,tsx} --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "copy:export": "ionic cap copy",
+    "ion:build": "ionic build"
   },
   "eslintConfig": {
     "extends": [
