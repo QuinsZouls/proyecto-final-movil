@@ -51,3 +51,33 @@
     height: 25px;
   }
 }
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  height: 60%;
+  .link-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    span {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    ion-icon {
+      height: 30px;
+      width: 30px;
+      &.twitter {
+        color: #00acee;
+      }
+      &.facebook {
+        color: #3b5998;
+      }
+      &.instagram {
+        color: #e1306c;
+      }
+    }
+  }
+}
