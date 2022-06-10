@@ -5,16 +5,26 @@ import React, {
   useMemo,
   useContext
 } from 'react';
-import { getCollectionByName } from '../services/Firebase';
+import { getCollectionByName, getDocumentByPath } from '../services/Firebase';
 
 import { storage } from '../services/Storage';
+
+export interface Lesson {
+  content?: string;
+  name: string;
+  type: 'text' | 'html' | 'youtube';
+  id?: string;
+}
 export interface Course {
   name: string;
   id: string;
   level?: number;
   image?: string;
   duration: string;
+  description?: string;
+  lessons?: Lesson[];
 }
+
 export interface FirebaseProviderProps {
   children?: any;
 }
@@ -26,6 +36,7 @@ interface FirebaseContextType {
   error?: any;
   fetchCourses: () => void;
   getLessons: (courseId: string) => any;
+  getCourse: (courseId: string) => Promise<any>;
 }
 
 const FirebaseContext = createContext<FirebaseContextType>(
@@ -72,13 +83,22 @@ export const FirebaseProvider = ({ children }: FirebaseProviderProps) => {
       id: docSnapshot.id
     }));
   }
+  async function getCourse(courseId: string) {
+    const courseDocument = await getDocumentByPath(`courses/${courseId}`);
+    const lessons = await getLessons(courseId);
+    return {
+      ...courseDocument.data(),
+      lessons
+    };
+  }
   const memoedValue = useMemo(
     () => ({
       courses,
       loading,
       error,
       fetchCourses,
-      getLessons
+      getLessons,
+      getCourse
     }),
     [courses, loading, error]
   );
