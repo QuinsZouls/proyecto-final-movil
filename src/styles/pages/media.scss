@@ -1,0 +1,48 @@
+.media-screen {
+  height: 100%;
+  .top-content {
+    background: linear-gradient(235deg, #ff8080 0%, #f0838a 58%, #ffeded 100%);
+    height: 40%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .title {
+      h1,
+      h5 {
+        text-align: center;
+        font-weight: bolder;
+      }
+      h1 {
+        font-size: 26px;
+      }
+    }
+    .image-wrapper {
+      position: absolute;
+      bottom: 50%;
+      left: 20px;
+      img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+  .main-content {
+    margin-top: 100px;
+    padding-left: 20px;
+  }
+}
+.right-icon {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  background: linear-gradient(90deg, #fff 0%, #83c7f5 100%);
+  ion-icon {
+    width: 25px;
+    height: 25px;
+  }
+}
