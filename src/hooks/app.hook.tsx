@@ -17,8 +17,19 @@ interface AppContextType {
   appData?: any;
   completeLesson: (lessonId: string) => any;
   loadCourses: (courses: any) => any;
+  startGame: (courseId: string) => any;
+  setQuestionResults: (
+    courseId: string,
+    questionId: string,
+    result: number
+  ) => any;
 }
-type Action = 'SET_COURSES' | 'SET_LESSON_DATA' | 'INITIAL_LOAD';
+type Action =
+  | 'SET_COURSES'
+  | 'SET_LESSON_DATA'
+  | 'INITIAL_LOAD'
+  | 'START_GAME'
+  | 'SET_GAME_RESULTS';
 export interface ActionReducer {
   type: Action;
   data?: any;
@@ -27,18 +38,21 @@ export interface AppState {
   courses: any;
   lessons: any;
   playHistory: any;
+  ready: boolean;
 }
 const INITIAL_STATE = {
   courses: {},
   lessons: {},
-  playHistory: {}
+  playHistory: {},
+  ready: false
 };
 const appReducer = (state: AppState, action: ActionReducer): AppState => {
   switch (action.type) {
     case 'INITIAL_LOAD':
       return {
         ...state,
-        ...action?.data
+        ...action?.data,
+        ready: true
       };
     case 'SET_COURSES':
       return {
@@ -52,6 +66,25 @@ const appReducer = (state: AppState, action: ActionReducer): AppState => {
       return {
         ...state,
         lessons: { ...state.lessons, [action.data]: true }
+      };
+    case 'START_GAME':
+      return {
+        ...state,
+        playHistory: {
+          ...state.playHistory,
+          [action.data]: {}
+        }
+      };
+    case 'SET_GAME_RESULTS':
+      return {
+        ...state,
+        playHistory: {
+          ...state.playHistory,
+          [action.data?.courseId]: {
+            ...state.playHistory[action.data?.courseId],
+            [action.data?.questionId]: action.data?.result
+          }
+        }
       };
     default:
       throw new Error('Acción no definida ');
@@ -80,8 +113,10 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     recallData();
   }, []);
   useEffect(() => {
-    storage.set('appData', JSON.stringify(appData));
-    console.log(appData);
+    if (appData.ready) {
+      storage.set('appData', JSON.stringify(appData));
+      console.log(appData);
+    }
   }, [appData]);
   function completeLesson(lessonId: string) {
     dispatch({
@@ -95,11 +130,33 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       data
     });
   }
+  function startGame(courseId: string) {
+    dispatch({
+      type: 'START_GAME',
+      data: courseId
+    });
+  }
+  function setQuestionResults(
+    courseId: string,
+    questionId: string,
+    result: number
+  ) {
+    dispatch({
+      type: 'SET_GAME_RESULTS',
+      data: {
+        questionId,
+        courseId,
+        result
+      }
+    });
+  }
   const memoedValue = useMemo(
     () => ({
       appData,
       completeLesson,
-      loadCourses
+      loadCourses,
+      startGame,
+      setQuestionResults
     }),
     [appData, completeLesson]
   );

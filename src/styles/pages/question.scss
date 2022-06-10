@@ -1,0 +1,27 @@
+.question-screen {
+  height: calc(100% - 70px);
+  width: 100%;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    h1 {
+      width: 70%;
+      word-wrap: break-word;
+      text-align: center;
+    }
+    ion-button {
+      word-wrap: break-word;
+      white-space: normal;
+    }
+    ion-col {
+      text-align: center;
+    }
+    .answers {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+}

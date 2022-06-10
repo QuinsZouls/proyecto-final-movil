@@ -1,6 +1,8 @@
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
 import Header, { type HeaderProps } from './Header';
+import useApp from '../hooks/app.hook';
+
 export interface LayoutProps {
   children?: React.ReactNode;
   noHeader?: boolean;
@@ -13,11 +15,14 @@ const Layout: React.FC<LayoutProps> = ({
   className = '',
   headerConfig
 }) => {
+  const {
+    appData: { ready }
+  } = useApp();
   return (
     <IonPage className="screen">
       <IonContent>
         {!noHeader && <Header {...headerConfig} />}
-        <div className={`container ${className}`}>{children}</div>
+        {ready && <div className={`container ${className}`}>{children}</div>}
       </IonContent>
     </IonPage>
   );

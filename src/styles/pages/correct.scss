@@ -1,0 +1,74 @@
+.correct-answer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #27ae60;
+  .wrapper {
+    width: 100%;
+    text-align: center;
+    h1 {
+      font-size: 50px;
+      word-wrap: break-word;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+    ion-icon {
+      height: 100px;
+      width: 100px;
+      color: #fff;
+    }
+  }
+}
+.wrong-answer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e74c3c;
+  .wrapper {
+    width: 100%;
+    text-align: center;
+    h1 {
+      font-size: 50px;
+      word-wrap: break-word;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+    ion-icon {
+      height: 100px;
+      width: 100px;
+      color: #fff;
+    }
+  }
+}
+.results {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .wrapper {
+    width: 100%;
+    text-align: center;
+    h1 {
+      font-size: 50px;
+      word-wrap: break-word;
+      color: #000;
+      text-align: center;
+      width: 100%;
+    }
+    ion-icon {
+      height: 100px;
+      width: 100px;
+      color: #fff;
+    }
+    h2 {
+      font-size: 100px;
+    }
+  }
+}
