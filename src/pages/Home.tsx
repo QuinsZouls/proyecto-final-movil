@@ -8,14 +8,30 @@ import InfoCard from '../components/InfoCard';
 import monster from '../assets/img/monster/1.png';
 // Hooks
 import useFirebase from '../hooks/firebase.hook';
+import useApp from '../hooks/app.hook';
 import { useHistory } from 'react-router';
 
 const Home: React.FC = () => {
-  const { courses, fetchCourses } = useFirebase();
+  const { getCourses } = useFirebase();
+  const {
+    appData: { courses },
+    loadCourses
+  } = useApp();
   const history = useHistory();
   useEffect(() => {
-    fetchCourses();
+    async function get() {
+      const response: any = await getCourses();
+      const parsedCourses: any = {};
+      for (const course of response) {
+        parsedCourses[course?.id] = course;
+      }
+      loadCourses(parsedCourses);
+    }
+    if (Object.keys(courses).length === 0) {
+      get();
+    }
   }, []);
+
   return (
     <Layout
       headerConfig={{
@@ -44,18 +60,21 @@ const Home: React.FC = () => {
       <div className="main-content">
         <h1>Cursos</h1>
         <HorizontalList>
-          {courses?.map(course => (
-            <InfoCard
-              image={course.image}
-              key={course.id}
-              onClick={() => history.push(`/course/${course.id}`)}
-            >
-              <h2>{course.name}</h2>
-              <div>
-                <p>{course.duration}</p>
-              </div>
-            </InfoCard>
-          ))}
+          {Object.keys(courses)?.map(key => {
+            const course = courses[key];
+            return (
+              <InfoCard
+                image={course.image}
+                key={course.id}
+                onClick={() => history.push(`/course/${course.id}`)}
+              >
+                <h2>{course.name}</h2>
+                <div>
+                  <p>{course.duration}</p>
+                </div>
+              </InfoCard>
+            );
+          })}
         </HorizontalList>
       </div>
     </Layout>

@@ -2,6 +2,7 @@ import React from 'react';
 import { IonApp, setupIonicReact } from '@ionic/react';
 import Router from './Router';
 import { FirebaseProvider } from '../hooks/firebase.hook';
+import { AppProvider } from '../hooks/app.hook';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -24,9 +25,11 @@ setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <FirebaseProvider>
-      <Router />
-    </FirebaseProvider>
+    <AppProvider>
+      <FirebaseProvider>
+        <Router />
+      </FirebaseProvider>
+    </AppProvider>
   </IonApp>
 );
 

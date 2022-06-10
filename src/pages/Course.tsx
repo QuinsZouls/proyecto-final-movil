@@ -6,8 +6,12 @@ import { IonCol, IonIcon, IonRow } from '@ionic/react';
 import { folder, time } from 'ionicons/icons';
 // Hooks
 import useFirebase, { type Course as CourseType } from '../hooks/firebase.hook';
+import useApp from '../hooks/app.hook';
 const Course: React.FC = () => {
   const [course, setCourse] = useState<CourseType | null>(null);
+  const {
+    appData: { lessons }
+  } = useApp();
   const history = useHistory();
   const {
     params: { courseId }
@@ -51,7 +55,7 @@ const Course: React.FC = () => {
           <h3>Aprendamos</h3>
           {course?.lessons?.map((lesson, index) => (
             <div
-              className="circle"
+              className={`circle ${lessons[lesson?.id] ? 'active' : ''}`}
               key={index}
               onClick={() => history.push(`/lesson/${courseId}/${lesson?.id}`)}
             >

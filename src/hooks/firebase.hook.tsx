@@ -12,8 +12,8 @@ import { storage } from '../services/Storage';
 export interface Lesson {
   content?: string;
   name: string;
-  type: 'text' | 'html' | 'youtube';
-  id?: string;
+  type: 'text' | 'html' | 'youtube' | 'image';
+  id: string;
 }
 export interface Course {
   name: string;
@@ -37,6 +37,8 @@ interface FirebaseContextType {
   fetchCourses: () => void;
   getLessons: (courseId: string) => any;
   getCourse: (courseId: string) => Promise<any>;
+  getLesson: (courseId: string, lessonId: string) => Promise<any>;
+  getCourses: () => Promise<any>;
 }
 
 const FirebaseContext = createContext<FirebaseContextType>(
@@ -83,12 +85,45 @@ export const FirebaseProvider = ({ children }: FirebaseProviderProps) => {
       id: docSnapshot.id
     }));
   }
+  async function getQuestions(courseId: string) {
+    const documents = await getCollectionByName(
+      `courses/${courseId}/questions`
+    );
+    return documents.docs.map(docSnapshot => ({
+      ...docSnapshot.data(),
+      id: docSnapshot.id
+    }));
+  }
   async function getCourse(courseId: string) {
     const courseDocument = await getDocumentByPath(`courses/${courseId}`);
     const lessons = await getLessons(courseId);
     return {
       ...courseDocument.data(),
       lessons
+    };
+  }
+  async function getCourses() {
+    const courseDocument = await getCollectionByName('courses/');
+    const data = [];
+    for (const docSnapshot of courseDocument.docs) {
+      const lessons = await getLessons(docSnapshot.id);
+      const questions = await getQuestions(docSnapshot.id);
+      data.push({
+        ...docSnapshot.data(),
+        id: docSnapshot.id,
+        lessons,
+        questions
+      });
+    }
+    return data;
+  }
+  async function getLesson(courseId: string, lessonId: string) {
+    const recordDocument = await getDocumentByPath(
+      `courses/${courseId}/lessons/${lessonId}`
+    );
+    return {
+      ...recordDocument.data(),
+      id: recordDocument.id
     };
   }
   const memoedValue = useMemo(
@@ -98,7 +133,9 @@ export const FirebaseProvider = ({ children }: FirebaseProviderProps) => {
       error,
       fetchCourses,
       getLessons,
-      getCourse
+      getCourse,
+      getLesson,
+      getCourses
     }),
     [courses, loading, error]
   );
