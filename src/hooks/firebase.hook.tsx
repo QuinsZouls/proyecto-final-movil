@@ -1,4 +1,10 @@
-import React, { createContext, useState, useEffect, useMemo, useContext } from 'react';
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  useMemo,
+  useContext
+} from 'react';
 import { getCollectionByName } from '../services/Firebase';
 
 import { storage } from '../services/Storage';
@@ -6,6 +12,8 @@ export interface Course {
   name: string;
   id: string;
   level?: number;
+  image?: string;
+  duration: string;
 }
 export interface FirebaseProviderProps {
   children?: any;
@@ -20,7 +28,9 @@ interface FirebaseContextType {
   getLessons: (courseId: string) => any;
 }
 
-const FirebaseContext = createContext<FirebaseContextType>({} as FirebaseContextType);
+const FirebaseContext = createContext<FirebaseContextType>(
+  {} as FirebaseContextType
+);
 
 export const FirebaseProvider = ({ children }: FirebaseProviderProps) => {
   const [courses, setCourses] = useState<Course[] | any>(null);
@@ -73,7 +83,11 @@ export const FirebaseProvider = ({ children }: FirebaseProviderProps) => {
     [courses, loading, error]
   );
 
-  return <FirebaseContext.Provider value={memoedValue}>{children}</FirebaseContext.Provider>;
+  return (
+    <FirebaseContext.Provider value={memoedValue}>
+      {children}
+    </FirebaseContext.Provider>
+  );
 };
 export default function useFirebase() {
   return useContext(FirebaseContext);

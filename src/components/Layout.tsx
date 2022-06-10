@@ -1,16 +1,23 @@
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
-import Header from './Header';
+import Header, { type HeaderProps } from './Header';
 export interface LayoutProps {
   children?: React.ReactNode;
   noHeader?: boolean;
+  headerConfig?: HeaderProps;
+  className?: string;
 }
-const Layout: React.FC<LayoutProps> = ({ children, noHeader }) => {
+const Layout: React.FC<LayoutProps> = ({
+  children,
+  noHeader,
+  className = '',
+  headerConfig
+}) => {
   return (
     <IonPage className="screen">
       <IonContent>
-        {!noHeader && <Header />}
-        <div className="container">{children}</div>
+        {!noHeader && <Header {...headerConfig} />}
+        <div className={`container ${className}`}>{children}</div>
       </IonContent>
     </IonPage>
   );
