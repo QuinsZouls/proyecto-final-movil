@@ -108,6 +108,10 @@ export const AppProvider = ({ children }: AppProviderProps) => {
           type: 'INITIAL_LOAD',
           data
         });
+      } else {
+        dispatch({
+          type: 'INITIAL_LOAD'
+        });
       }
     }
     recallData();

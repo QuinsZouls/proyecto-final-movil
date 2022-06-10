@@ -33,7 +33,7 @@ const Question: React.FC = () => {
     return () => {
       setQuestion(null);
     };
-  }, [courseId, questionId]);
+  }, [courseId, questionId, ready]);
   function _handleSelectAnswer(answer: number) {
     if (answer === question?.answer) {
       history.push(`/correct/${courseId}/${questionId}`);
