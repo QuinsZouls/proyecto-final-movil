@@ -11,17 +11,17 @@ const TabRouter: React.FC = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Route path="/" component={Home} exact={true} />
+        <Route path="/courses" component={Home} exact={true} />
       </IonRouterOutlet>
       {/* -- Tab bar -- */}
       <IonTabBar slot="bottom">
-        <IonTabButton tab="home" href="/" selected={pathname === '/'}>
+        <IonTabButton tab="home" href="/courses" selected={pathname === '/courses'}>
           <IonIcon icon={home} />
         </IonTabButton>
-        <IonTabButton tab="tests" href="/tests" selected={pathname === '/tests'}>
+        <IonTabButton tab="tests" href="/courses/tests" selected={pathname === '/courses/tests'}>
           <IonIcon icon={gameController} />
         </IonTabButton>
-        <IonTabButton tab="play" href="/media" selected={pathname === '/media'}>
+        <IonTabButton tab="play" href="/courses/media" selected={pathname === '/courses/media'}>
           <IonIcon icon={play} />
         </IonTabButton>
       </IonTabBar>
