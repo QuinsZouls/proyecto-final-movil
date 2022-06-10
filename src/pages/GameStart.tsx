@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Layout from '../components/Layout';
 import { useRouteMatch, useHistory } from 'react-router';
 
-const Course: React.FC = () => {
+const GameStart: React.FC = () => {
   const history = useHistory();
   const {
     params: { courseId }
@@ -21,10 +21,10 @@ const Course: React.FC = () => {
       }}
       className="course-screen"
     >
-      <h1>Aquí va el contenido del curso, con la lista de las lecciones</h1>
-      <div>course detail: {courseId}</div>
+      <h1>Aquí va la pantalla para iniciar el juego</h1>
+      <div>Game detail: course ID {courseId}</div>
     </Layout>
   );
 };
 
-export default Course;
+export default GameStart;
